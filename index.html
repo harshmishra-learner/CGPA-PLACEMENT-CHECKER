@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CGPA → Placement Checker | AKTU Students</title>
+  <meta name="description" content="Convert your CGPA to percentage and check placement eligibility for top companies like TCS, Infosys, Wipro, and more. Built for AKTU students." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🎓</span>
+        <span class="logo-text">PlacementReady</span>
+      </div>
+      <div class="header-badge">AKTU / B.Tech Focus</div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">FREE TOOL FOR CS / IT STUDENTS</div>
+      <h1 class="hero-title">CGPA → Placement<br /><span class="hero-accent">Eligibility Checker</span></h1>
+      <p class="hero-sub">Enter your CGPA — get your percentage instantly and see which top companies you're eligible for. No signup, no ads, 100% free.</p>
+    </div>
+  </section>
+
+  <!-- Main App -->
+  <main class="app-container">
+
+    <!-- Input Card -->
+    <div class="card input-card">
+      <h2 class="card-title">Enter Your Details</h2>
+
+      <div class="form-group">
+        <label class="form-label" for="cgpa">Your CGPA <span class="label-hint">(on 10.0 scale)</span></label>
+        <div class="input-wrapper">
+          <input
+            type="number"
+            id="cgpa"
+            class="form-input"
+            placeholder="e.g. 7.5"
+            min="0"
+            max="10"
+            step="0.01"
+            autocomplete="off"
+          />
+          <span class="input-suffix">/ 10.0</span>
+        </div>
+        <div class="input-error" id="cgpa-error">Please enter a valid CGPA between 0 and 10.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">University System</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="university" value="aktu" checked />
+            <span class="radio-box">
+              <span class="radio-dot"></span>
+              AKTU / Most Indian Universities
+              <span class="radio-formula">(CGPA − 0.75) × 10</span>
+            </span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="university" value="generic" />
+            <span class="radio-box">
+              <span class="radio-dot"></span>
+              Generic Formula
+              <span class="radio-formula">CGPA × 9.5</span>
+            </span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="university" value="direct" />
+            <span class="radio-box">
+              <span class="radio-dot"></span>
+              Direct × 10
+              <span class="radio-formula">CGPA × 10</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn-check" id="check-btn" onclick="calculate()">
+        <span class="btn-icon">⚡</span>
+        Check Eligibility
+      </button>
+
+      <p class="disclaimer">* Cutoffs are indicative. Always verify from official company announcements.</p>
+    </div>
+
+    <!-- Results -->
+    <div class="results-section" id="results" style="display:none;">
+
+      <!-- Percentage Result -->
+      <div class="card result-hero-card">
+        <div class="result-hero-label">YOUR PERCENTAGE</div>
+        <div class="result-hero-number" id="percentage-display">--%</div>
+        <div class="result-hero-meta" id="cgpa-display">CGPA: --</div>
+        <div class="meter-track">
+          <div class="meter-fill" id="meter-fill"></div>
+          <div class="meter-labels">
+            <span>0%</span><span>50%</span><span>100%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade Card -->
+      <div class="card grade-card" id="grade-card">
+        <div class="grade-icon" id="grade-icon">🏆</div>
+        <div class="grade-text" id="grade-text">Excellent</div>
+        <div class="grade-sub" id="grade-sub">Top tier eligibility</div>
+      </div>
+
+      <!-- Company Eligibility -->
+      <div class="card companies-card">
+        <h3 class="section-title">Company Eligibility</h3>
+        <p class="section-sub">Based on your percentage across common placement drives</p>
+        <div class="companies-grid" id="companies-grid">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+      <!-- Category Summary -->
+      <div class="card summary-card">
+        <h3 class="section-title">Your Placement Tier</h3>
+        <div class="tier-grid" id="tier-grid">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="card tips-card" id="tips-card">
+        <h3 class="section-title">📌 Next Steps</h3>
+        <ul class="tips-list" id="tips-list">
+          <!-- Injected by JS -->
+        </ul>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- About / Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <!-- Creator Info (Required) -->
+      <div class="creator-box">
+        <div class="creator-label">BUILT BY</div>
+        <div class="creator-name">Harsh Mishra</div>
+        <div class="creator-email">
+          <a href="mailto:mishra30harsh@gmail.com">mishra30harsh@gmail.com</a>
+        </div>
+        <div class="creator-desc">B.Tech CSE, Lucknow Institute of Technology (AKTU) · 2027</div>
+      </div>
+
+      <!-- Digital Heroes Button (Required) -->
+      <div class="dh-box">
+        <a
+          href="https://digitalheroesco.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-dh"
+        >Built for Digital Heroes</a>
+        <p class="footer-copy">Free forever · No signup · No data stored</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
