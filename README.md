@@ -5,8 +5,7 @@ A free, instant tool for B.Tech / AKTU students to:
 - Check eligibility for 14+ top companies (TCS, Infosys, Wipro, HCL, Accenture, and more)
 - Get personalized next-step tips based on their profile
 
-**Live Demo:** [your-vercel-url.vercel.app]  
-**Built for:** [Digital Heroes](https://digitalheroesco.com)  
+**Live Demo:** https://cgpa-placement-checker.vercel.app/
 **Built by:** Harsh Mishra— mishra30harsh@gmail.com
 
 ---
